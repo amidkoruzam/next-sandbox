@@ -27,14 +27,20 @@ const flightCompanies = [
   },
 ];
 
+const capitalize = (str: string) => {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+};
+
 export const search = ({ from, to }: { from: string; to: string }) => {
   const duration = getRandomNumber(60, 360);
 
-  return Array.from({ length: getRandomNumber(5, 10) }).map((_, index) => ({
-    id: index,
-    from,
-    to,
-    duration,
-    flightCompany: getRandomFromArray(flightCompanies),
-  }));
+  return Promise.resolve(
+    Array.from({ length: getRandomNumber(5, 10) }).map((_, index) => ({
+      id: index,
+      from: capitalize(from),
+      to: capitalize(to),
+      duration,
+      flightCompany: getRandomFromArray(flightCompanies),
+    }))
+  );
 };
