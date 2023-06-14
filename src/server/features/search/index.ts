@@ -17,6 +17,14 @@ const flightCompanies = [
     id: 3,
     name: "Virgin",
   },
+  {
+    id: 4,
+    name: "American Airlines",
+  },
+  {
+    id: 5,
+    name: "British Airways",
+  },
 ];
 
 export const search = ({ from, to }: { from: string; to: string }) => {
