@@ -9,16 +9,16 @@ export default async function Home({
   params: { slug: string };
   searchParams?: Record<string, string | string[] | undefined>;
 }) {
-  const from = searchParams?.from;
-  const to = searchParams?.to;
+  const from = typeof searchParams?.from === "string" ? searchParams.from : "";
+  const to = typeof searchParams?.to === "string" ? searchParams.to : "";
 
-  const tickets = await (typeof from === "string" && typeof to === "string"
+  const tickets = await (from && to
     ? search({ from, to })
     : Promise.resolve([]));
 
   return (
     <Container className="pt-10 pb-10">
-      <Search />
+      <Search fromDefaultValue={from} toDefaultValue={to} />
 
       <div className="grid gap-y-5 mt-5">
         {tickets.map(({ from, to, id, duration, flightCompany }) => (
